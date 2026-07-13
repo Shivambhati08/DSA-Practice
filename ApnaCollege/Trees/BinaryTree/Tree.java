@@ -1,0 +1,84 @@
+
+// Build tree from Preorder
+
+import java.util.*;
+public class Tree {
+    static class Node{
+        int data;
+        Node left;
+        Node right;
+        Node(int data){
+            this.data = data;
+            this.left = null;
+            this.right = null;
+        }
+    }
+    static class BinaryTree{
+        static int idx = -1;
+
+        public Node buildtree(int[] nodes){
+            idx++;
+            if(nodes[idx] == -1){
+                return null;
+            }
+            Node newnode = new Node(nodes[idx]);
+            newnode.left = buildtree(nodes);
+            newnode.right = buildtree(nodes);
+
+            return newnode;
+        }
+        
+        public void preorder(Node root){
+            if(root == null){
+                return;
+            }
+            System.out.print(root.data+" ");
+            preorder(root.left);
+            preorder(root.right);
+        }
+        public void inorder(Node root){
+            if(root == null){
+                return;
+            }
+            inorder(root.left);
+            System.out.print(root.data+" ");
+            inorder(root.right);
+        }
+        public void postorder(Node root){
+            if(root == null){
+                return;
+            }
+            postorder(root.left);
+            postorder(root.right);
+            System.out.print(root.data+" ");
+        }
+        public void levelorder(Node root){
+            if(root == null){
+                return;
+            }
+            Queue<Node> queue = new LinkedList<>();
+            queue.add(root);
+            while(!queue.isEmpty()){
+                Node currnode = queue.remove();
+                System.out.print(currnode.data+" ");
+                if(currnode.left != null){
+                    queue.add(currnode.left);
+                }
+                if(currnode.right != null){
+                    queue.add(currnode.right);
+                }
+            }
+        }
+    }
+    public static void main(String[] args) {
+        int[] nodes = {1,2,4,-1,-1,5,-1,-1,3,-1,6,-1,-1};
+        BinaryTree tree = new BinaryTree();
+
+        Node root = tree.buildtree(nodes);
+        // System.out.println(root.data);
+        // tree.preorder(root);
+        // tree.inorder(root);
+        // tree.postorder(root);
+        tree.levelorder(root);
+    }
+}
