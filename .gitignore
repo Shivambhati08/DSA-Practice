@@ -1,0 +1,17 @@
+# Ignore Java compiled files
+*.class
+
+# Ignore folders
+basics/
+Bootcamp-1/
+Bootcamp-2/
+
+# Ignore VS Code settings
+.vscode/
+
+# Ignore temporary Java files
+tempCodeRunnerFile.java
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
